@@ -30,7 +30,8 @@ internal sealed class AboutForm : DialogBase
                    $"Runtime: {AppInfo.RuntimeDescription}\n" +
                    $"{(AppInfo.IsPackaged ? "Installed from MSIX package" : "Desktop installation")}\n\n" +
                    $"{AppInfo.Copyright}\n" +
-                   "Inspired by Microsoft XML Notepad (MIT License).",
+                   "Inspired by Microsoft XML Notepad (MIT License).\n" +
+                   AppInfo.RepositoryUrl,
             AutoSize = false,
             Location = new Point(96, 52),
             Size = new Size(350, 180),

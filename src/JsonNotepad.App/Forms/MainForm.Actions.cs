@@ -116,6 +116,8 @@ internal sealed partial class MainForm
 
         // Help
         Add("help.shortcuts", "&Keyboard Shortcuts", ShowShortcuts, null, Keys.F1, GlyphIcons.Help);
+        Add("help.github", "JsonNotepad on &GitHub", () => AppInfo.OpenUrl(AppInfo.RepositoryUrl));
+        Add("help.issue", "&Report a Problem", () => AppInfo.OpenUrl(AppInfo.RepositoryUrl + "/issues/new"));
         Add("help.logs", "Open &Log Folder", () =>
         {
             Directory.CreateDirectory(AppPaths.LogDirectory);
@@ -162,7 +164,7 @@ internal sealed partial class MainForm
         output.DropDownItems.AddRange(new ToolStripItem[] { M("format.preserve"), M("format.indented"), M("format.compact") });
         _menu.Items.Add(Top("&Tools", M("tools.validate"), M("tools.schema"), M("tools.clearSchema"), M("tools.nextError"), Sep(), output));
 
-        _menu.Items.Add(Top("&Help", M("help.shortcuts"), M("help.logs"), Sep(), M("help.about")));
+        _menu.Items.Add(Top("&Help", M("help.shortcuts"), Sep(), M("help.github"), M("help.issue"), M("help.logs"), Sep(), M("help.about")));
     }
 
     private ToolStripMenuItem BuildInsertMenu(string text)

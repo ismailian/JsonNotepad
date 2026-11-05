@@ -31,6 +31,8 @@ internal static class AppInfo
     public static string FullVersion =>
         Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? Version;
 
+    public const string RepositoryUrl = "https://github.com/ismailian/JsonNotepad";
+
     public static string RuntimeDescription => System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
 
     public static bool IsPackaged

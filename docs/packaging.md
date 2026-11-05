@@ -182,6 +182,28 @@ is required for public downloads. Always pass `-TimestampUrl` for releases so th
 certificate expires. The uninstaller (`unins000.exe`) is not signed. To sign it as well, configure Inno's `SignTool`
 directive in `JsonNotepad.iss`.
 
+## GitHub Releases and the website
+
+The website (Cloudflare Pages, `site/`, not in the repository) and GitHub Releases share one set of downloads. Cloudflare Pages accepts files up to 25 MiB, so the large standalone installer is served from GitHub only:
+
+| Asset (stable name) | Size | Hosted on |
+|---|---|---|
+| `JsonNotepad-setup.exe` (needs .NET 9 Desktop Runtime) | ~2 MB | site + GitHub |
+| `JsonNotepad-setup-standalone.exe` (includes .NET) | ~34 MB | GitHub only |
+| `JsonNotepad-portable.zip` (needs .NET 9 Desktop Runtime) | <1 MB | site + GitHub |
+
+The site links to `https://github.com/ismailian/JsonNotepad/releases/latest/download/<asset>`, so **keep the asset names unchanged** between releases and the links always resolve to the newest one.
+
+```powershell
+./build/package-release.ps1                 # build everything, stage artifacts/release/<version> + SHA256SUMS + RELEASE_NOTES.md
+./build/package-site.ps1 -SkipBuild         # copy the same small files into site/downloads
+# then: push the commit, create tag v<version> on GitHub and upload the staged files
+# (or with the GitHub CLI installed: ./build/package-release.ps1 -SkipBuild -Publish)
+npx wrangler pages deploy site --project-name jsonnotepad
+```
+
+Update the checksums shown on `site/index.html` from `artifacts/release/<version>/SHA256SUMS.txt` after every build.
+
 ## Release checklist
 
 1. `git pull` on `main`; working tree clean.

@@ -60,11 +60,13 @@ Editing a large JSON file in a text editor means counting brackets and hunting f
 | Option | How |
 |---|---|
 | Microsoft Store | *coming soon* |
-| MSIX | Download a release package, or build one yourself (see [Packaging](docs/packaging.md)) |
+| Installer | [JsonNotepad-setup.exe](https://github.com/ismailian/JsonNotepad/releases/latest/download/JsonNotepad-setup.exe) (needs the [.NET 9 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/9.0)) or [JsonNotepad-setup-standalone.exe](https://github.com/ismailian/JsonNotepad/releases/latest/download/JsonNotepad-setup-standalone.exe) (includes .NET) |
+| Portable | [JsonNotepad-portable.zip](https://github.com/ismailian/JsonNotepad/releases/latest/download/JsonNotepad-portable.zip), unzip and run (needs the .NET 9 Desktop Runtime) |
+| All releases | [GitHub Releases](https://github.com/ismailian/JsonNotepad/releases) |
 | Build from source | Requires the [.NET 9 SDK](https://dotnet.microsoft.com/download) |
 
 ```powershell
-git clone <this repository>
+git clone https://github.com/ismailian/JsonNotepad.git
 cd JsonNotepad
 dotnet build -c Release
 dotnet run --project src/JsonNotepad.App -c Release -- samples/bookstore.json
@@ -87,7 +89,9 @@ dotnet run --project tests/JsonNotepad.Core.Tests -c Release -- Undo            
 | `build/build.ps1` | Restore, build and test |
 | `build/package-msix.ps1 -Bundle` | x64 + arm64 `.msixbundle` for the Store |
 | `build/package-msix.ps1 -CreateDevCertificate` | Signed package for sideloading |
-| `build/package-inno.ps1` | Classic setup.exe (requires Inno Setup) |
+| `build/package-inno.ps1` | Classic setup.exe (requires Inno Setup); `-FrameworkDependent` for the small variant |
+| `build/package-release.ps1` | Stage all GitHub release assets (stable names) + checksums + release notes |
+| `build/package-site.ps1` | Copy the small downloads into `site/downloads` for Cloudflare Pages |
 | `build/version.ps1 minor` | Bump the version |
 | `build/generate-icons.ps1` | Regenerate the icon and Store assets |
 

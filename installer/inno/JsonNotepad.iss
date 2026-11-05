@@ -28,7 +28,7 @@
 #define AppName "JsonNotepad"
 #define AppExeName "JsonNotepad.exe"
 #define AppPublisher "JsonNotepad Contributors"
-#define AppUrl "https://github.com/jsonnotepad/JsonNotepad"
+#define AppUrl "https://github.com/ismailian/JsonNotepad"
 #define ProgId "JsonNotepad.json"
 
 #if !FileExists(AddBackslash(SourceDir) + AppExeName)
