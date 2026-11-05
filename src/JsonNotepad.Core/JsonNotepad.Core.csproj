@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    UI-agnostic engine: document model, parsing, serialization, undo/redo,
+    search, JSONPath, JSON Schema validation and background services.
+    Deliberately targets plain net9.0 (no -windows) so it can never take a
+    dependency on WinForms and stays unit-testable on any OS.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>JsonNotepad.Core</RootNamespace>
+    <AssemblyName>JsonNotepad.Core</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="JsonNotepad.Core.Tests" />
+  </ItemGroup>
+
+</Project>

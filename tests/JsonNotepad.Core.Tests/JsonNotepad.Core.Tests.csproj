@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Unit tests for JsonNotepad.Core. Deliberately dependency-free: no NuGet packages at all.
+    A tiny reflection-based test framework lives in Framework/ and the runner in Program.cs.
+    Run with: dotnet run (project tests/JsonNotepad.Core.Tests, Release); pass a name filter or "category perf" options after the separator.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>JsonNotepad.Core.Tests</RootNamespace>
+    <AssemblyName>JsonNotepad.Core.Tests</AssemblyName>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/JsonNotepad.Core/JsonNotepad.Core.csproj" />
+  </ItemGroup>
+
+</Project>

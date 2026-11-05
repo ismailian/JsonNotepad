@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Reusable, owner-drawn WinForms controls: the virtualized JSON tree, the
+    virtualized syntax-highlighted text view, the error list, theming and icons.
+    Depends on Core for the model only; knows nothing about the application shell.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>JsonNotepad.Controls</RootNamespace>
+    <AssemblyName>JsonNotepad.Controls</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JsonNotepad.Core\JsonNotepad.Core.csproj" />
+  </ItemGroup>
+
+</Project>

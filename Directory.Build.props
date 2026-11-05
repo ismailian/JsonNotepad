@@ -1,0 +1,29 @@
+<Project>
+  <!--
+    Shared build settings for every project in the repository.
+    The product version lives here and ONLY here: assemblies, the About box,
+    the MSIX manifest and the Inno Setup script all derive from it
+    (see docs/packaging.md).
+  -->
+  <PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <!-- Set VersionSuffix (e.g. "beta.1") from the command line for pre-releases:
+         dotnet build -p:VersionSuffix=beta.1 -->
+
+    <Product>JsonNotepad</Product>
+    <Company>JsonNotepad Contributors</Company>
+    <Authors>JsonNotepad Contributors</Authors>
+    <Copyright>Copyright (c) 2026 JsonNotepad Contributors</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <Deterministic>true</Deterministic>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+</Project>

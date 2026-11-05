@@ -1,0 +1,30 @@
+## Build output
+[Bb]in/
+[Oo]bj/
+artifacts/
+publish/
+*.msix
+*.msixbundle
+*.msixupload
+*.appx
+*.pfx
+
+## IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.rsuser
+*.DotSettings.user
+
+## OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+## Test output
+TestResults/
+
+## Website (Cloudflare Pages) - kept out of the repository on purpose; see build/package-site.ps1
+site/

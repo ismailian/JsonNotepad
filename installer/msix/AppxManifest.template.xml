@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  MSIX manifest template for JsonNotepad.
+  build/package-msix.ps1 replaces the $TOKENS$ below and writes the result as AppxManifest.xml
+  into the staged package layout:
+    $IDENTITY_NAME$           Package/Identity/Name           (installer/msix/package.config.psd1)
+    $PUBLISHER$               Package/Identity/Publisher      (installer/msix/package.config.psd1)
+    $PUBLISHER_DISPLAY_NAME$  Properties/PublisherDisplayName (installer/msix/package.config.psd1)
+    $VERSION$                 Major.Minor.Patch.0 from VersionPrefix in Directory.Build.props
+    $ARCH$                    x64 | arm64
+  Do not edit the generated AppxManifest.xml; edit this template instead.
+-->
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap uap5 rescap">
+
+  <Identity
+    Name="$IDENTITY_NAME$"
+    Publisher="$PUBLISHER$"
+    Version="$VERSION$"
+    ProcessorArchitecture="$ARCH$" />
+
+  <Properties>
+    <DisplayName>JsonNotepad</DisplayName>
+    <PublisherDisplayName>$PUBLISHER_DISPLAY_NAME$</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <Description>A fast JSON viewer and editor with a tree view, inspired by XML Notepad.</Description>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-US" />
+  </Resources>
+
+  <Applications>
+    <Application Id="JsonNotepad" Executable="JsonNotepad.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements
+        DisplayName="JsonNotepad"
+        Description="View and edit JSON documents as a tree."
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile
+          Wide310x150Logo="Assets\Wide310x150Logo.png"
+          Square71x71Logo="Assets\SmallTile\Square71x71Logo.png"
+          Square310x310Logo="Assets\LargeTile\Square310x310Logo.png"
+          ShortName="JsonNotepad">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+      </uap:VisualElements>
+
+      <Extensions>
+        <!-- Shows JsonNotepad in "Open with" for JSON-family files; the path arrives as argv[0]. -->
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="jsonnotepad.json">
+            <uap:DisplayName>JSON document</uap:DisplayName>
+            <uap:Logo>Assets\Square44x44Logo.png</uap:Logo>
+            <uap:InfoTip>JSON document - open with JsonNotepad</uap:InfoTip>
+            <uap:EditFlags OpenIsSafe="true" />
+            <uap:SupportedFileTypes>
+              <uap:FileType ContentType="application/json">.json</uap:FileType>
+              <uap:FileType>.jsonc</uap:FileType>
+              <uap:FileType ContentType="application/geo+json">.geojson</uap:FileType>
+              <uap:FileType>.har</uap:FileType>
+              <uap:FileType ContentType="application/manifest+json">.webmanifest</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+
+        <!-- Lets `jsonnotepad file.json` work from any terminal (alias lives in %LOCALAPPDATA%\Microsoft\WindowsApps). -->
+        <uap5:Extension
+          Category="windows.appExecutionAlias"
+          Executable="JsonNotepad.exe"
+          EntryPoint="Windows.FullTrustApplication">
+          <uap5:AppExecutionAlias>
+            <uap5:ExecutionAlias Alias="jsonnotepad.exe" />
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>

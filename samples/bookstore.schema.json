@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["store"],
+  "properties": {
+    "store": {
+      "type": "object",
+      "required": ["name", "book"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "open": { "type": "boolean" },
+        "rating": { "type": "number", "minimum": 0, "maximum": 5 },
+        "tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "book": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/book" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "book": {
+      "type": "object",
+      "required": ["category", "author", "title", "price", "isbn"],
+      "properties": {
+        "category": { "enum": ["reference", "fiction", "science"] },
+        "author": { "type": "string" },
+        "title": { "type": "string" },
+        "price": { "type": "number", "exclusiveMinimum": 0 },
+        "isbn": { "type": "string", "pattern": "^[0-9-]+[0-9X]$" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
